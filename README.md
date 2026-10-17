@@ -1,5 +1,7 @@
 # spend-radar
 
+[![CI](https://github.com/python-matte/spend-radar/actions/workflows/ci.yml/badge.svg)](https://github.com/python-matte/spend-radar/actions/workflows/ci.yml)
+
 Find where software money leaks, decide what to do about it, and prepare a negotiation where every claim can be checked.
 
 It is a small Python command line tool. It reads a vendor list, flags contracts that are about to roll over, estimates what unused seats and overlapping tools cost, ranks the decisions, and writes a brief for each vendor. The brief ties every claim to a quoted source and checks the quote. A monthly digest tells each team lead what they own.
