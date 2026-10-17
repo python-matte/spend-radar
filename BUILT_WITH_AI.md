@@ -37,7 +37,7 @@ How the dashboard was checked: it was opened in the app's browser pane on deskto
 
 ## What I have not checked
 
-- I only ran the tests on Python 3.14, which is what was on this machine. CI is set up for 3.11 and 3.13, but it has not run, because nothing has been pushed.
+- I only ran the tests on my machine on Python 3.14. After the repo was published, the first CI run passed on Python 3.11 and 3.13.
 - The live provider was tested only with fake HTTP clients. It has never touched the real network.
 - The model step was tested only with a fake client. It has never called the real API.
 - The email and Slack sending code was tested only with fake servers. No real message has ever been sent.
