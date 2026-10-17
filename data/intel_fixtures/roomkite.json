@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Roomkite",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "funding",
+      "date": "2026-04-30",
+      "title": "[SAMPLE] Roomkite is bootstrapped",
+      "snippet": "SAMPLE: Roomkite said it has no outside investors and has been profitable for two years.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/roomkite/situation-1"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Payloom",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "funding",
+      "date": "2026-05-22",
+      "title": "[SAMPLE] Payloom raises new funding",
+      "snippet": "SAMPLE: Payloom said it raised $25 million on 2026-05-22 to expand its card features.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/payloom/situation-1"
+    }
+  ]
+}

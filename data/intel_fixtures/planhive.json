@@ -1,0 +1,43 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Planhive",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "funding",
+      "date": "2026-06-10",
+      "title": "[SAMPLE] Planhive closes a funding round",
+      "snippet": "SAMPLE: Planhive said it closed a funding round of $40 million on 2026-06-10 and plans to hire more sales staff.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/planhive/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-09-05",
+      "title": "[SAMPLE] Planhive launches a reporting add-on",
+      "snippet": "SAMPLE: Planhive launched a reporting add-on and said it will be sold as a separate paid module.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/planhive/situation-2"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Planhive Pro plan list price",
+      "snippet": "SAMPLE: The Planhive Pro plan is listed at $17.50 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/planhive/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-28",
+      "title": "[SAMPLE] Kanbrook Business plan pricing",
+      "snippet": "SAMPLE: Kanbrook lists its Business plan at $16 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/planhive/competitors-1"
+    }
+  ]
+}

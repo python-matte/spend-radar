@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Calendrift",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-09-03",
+      "title": "[SAMPLE] Calendrift adds routing rules",
+      "snippet": "SAMPLE: Calendrift added routing rules to its paid plans.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/calendrift/situation-1"
+    }
+  ]
+}

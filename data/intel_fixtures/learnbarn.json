@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Learnbarn",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-07-07",
+      "title": "[SAMPLE] Learnbarn adds course analytics",
+      "snippet": "SAMPLE: Learnbarn added course analytics to its flat plan at no extra charge.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/learnbarn/situation-1"
+    }
+  ]
+}

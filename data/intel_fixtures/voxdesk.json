@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Voxdesk",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "outage",
+      "date": "2026-09-17",
+      "title": "[SAMPLE] Voxdesk reports a call quality incident",
+      "snippet": "SAMPLE: Voxdesk reported a call quality incident on 2026-09-17 that lasted 3 hours.",
+      "source_type": "status page",
+      "url": "https://example.com/sample/voxdesk/situation-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-10-04",
+      "title": "[SAMPLE] Ringfield switching offer",
+      "snippet": "SAMPLE: Ringfield offers free number porting and 10% off the first year for teams of 100 seats or more, until 2026-12-31.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/voxdesk/competitors-1"
+    }
+  ]
+}

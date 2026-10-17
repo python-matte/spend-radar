@@ -1,0 +1,34 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Datanest",
+  "fiscal_year_end_month": 1,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "outage",
+      "date": "2026-09-09",
+      "title": "[SAMPLE] Datanest status page lists query delays",
+      "snippet": "SAMPLE: The Datanest status page lists query delays of up to 3 hours on 2026-09-09.",
+      "source_type": "status page",
+      "url": "https://example.com/sample/datanest/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-08-25",
+      "title": "[SAMPLE] Datanest changes how usage is metered",
+      "snippet": "SAMPLE: Datanest said it will meter storage and compute separately from 2027-01-01.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/datanest/situation-2"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "alternative",
+      "date": "2026-09-15",
+      "title": "[SAMPLE] Stackmeadow offers a migration program",
+      "snippet": "SAMPLE: Stackmeadow announced a free migration service for teams leaving other data warehouses.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/datanest/competitors-1"
+    }
+  ]
+}

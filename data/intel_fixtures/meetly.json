@@ -1,0 +1,52 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Meetly",
+  "fiscal_year_end_month": 9,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "security",
+      "date": "2026-08-19",
+      "title": "[SAMPLE] Meetly discloses a security incident",
+      "snippet": "SAMPLE: Meetly disclosed a security incident on 2026-08-19 that affected meeting recordings for 2% of accounts.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/meetly/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "earnings",
+      "date": "2026-10-05",
+      "title": "[SAMPLE] Meetly guides to slower growth",
+      "snippet": "SAMPLE: Meetly told investors that growth next quarter will be lower than last year and that it is focused on renewals.",
+      "source_type": "earnings call",
+      "url": "https://example.com/sample/meetly/situation-2"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Meetly Business plan list price",
+      "snippet": "SAMPLE: The Meetly Business plan is listed at $10 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/meetly/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-10-06",
+      "title": "[SAMPLE] Callmint switching offer",
+      "snippet": "SAMPLE: Callmint offers 20% off the first year to teams switching from another video tool, until 2026-11-30.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/meetly/competitors-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-10-06",
+      "title": "[SAMPLE] Beamwell Standard plan pricing",
+      "snippet": "SAMPLE: Beamwell lists its Standard plan at $9 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/meetly/competitors-2"
+    }
+  ]
+}

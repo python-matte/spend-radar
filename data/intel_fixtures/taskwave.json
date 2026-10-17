@@ -1,0 +1,70 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Taskwave",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "earnings",
+      "date": "2026-09-12",
+      "title": "[SAMPLE] Taskwave reports revenue below its own forecast",
+      "snippet": "SAMPLE: Taskwave reported revenue 6% below its own forecast for the quarter ended 2026-08-31 and said new sales were slower than planned.",
+      "source_type": "earnings call",
+      "url": "https://example.com/sample/taskwave/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "leadership",
+      "date": "2026-08-03",
+      "title": "[SAMPLE] Taskwave names a new chief revenue officer",
+      "snippet": "SAMPLE: Taskwave named a new chief revenue officer and said the role will focus on keeping existing customers.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/taskwave/situation-2"
+    },
+    {
+      "bucket": "situation",
+      "kind": "outage",
+      "date": "2026-07-21",
+      "title": "[SAMPLE] Taskwave status page lists a long outage",
+      "snippet": "SAMPLE: The Taskwave status page lists an outage of 5 hours on 2026-07-21 that affected board views.",
+      "source_type": "status page",
+      "url": "https://example.com/sample/taskwave/situation-3"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-02",
+      "title": "[SAMPLE] Taskwave Team plan list price",
+      "snippet": "SAMPLE: The Taskwave Team plan is listed at $20 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/taskwave/pricing-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "discount_tier",
+      "date": "2026-10-02",
+      "title": "[SAMPLE] Taskwave published volume tiers",
+      "snippet": "SAMPLE: Taskwave publishes volume tiers of 5% off from 250 seats and 10% off from 500 seats.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/taskwave/pricing-2"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-28",
+      "title": "[SAMPLE] Kanbrook Business plan pricing",
+      "snippet": "SAMPLE: Kanbrook lists its Business plan at $16 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/taskwave/competitors-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-09-30",
+      "title": "[SAMPLE] Tasksprout switching offer",
+      "snippet": "SAMPLE: Tasksprout offers 3 months free to teams moving from another project tool, valid until 2026-12-31.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/taskwave/competitors-2"
+    }
+  ]
+}

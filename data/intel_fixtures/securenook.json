@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Securenook",
+  "fiscal_year_end_month": 3,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "security",
+      "date": "2026-06-18",
+      "title": "[SAMPLE] Securenook completes an outside audit",
+      "snippet": "SAMPLE: Securenook said an outside audit completed on 2026-06-18 found no critical issues.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/securenook/situation-1"
+    }
+  ]
+}

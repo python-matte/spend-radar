@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Mailorbit",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-09-10",
+      "title": "[SAMPLE] Mailorbit adds a new sending tier",
+      "snippet": "SAMPLE: Mailorbit added a new sending tier that lowers the price per thousand emails above 500 thousand a month.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/mailorbit/situation-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-09-25",
+      "title": "[SAMPLE] Postfern switching offer",
+      "snippet": "SAMPLE: Postfern offers one free month for teams that import a list from another sender.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/mailorbit/competitors-1"
+    }
+  ]
+}

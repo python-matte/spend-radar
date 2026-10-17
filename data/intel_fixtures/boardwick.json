@@ -1,0 +1,43 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Boardwick",
+  "fiscal_year_end_month": 3,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "pricing_change",
+      "date": "2026-09-18",
+      "title": "[SAMPLE] Boardwick announces new prices from 2027-01-01",
+      "snippet": "SAMPLE: Boardwick announced that list prices rise 7% for existing annual plans from 2027-01-01.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/boardwick/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "security",
+      "date": "2026-08-11",
+      "title": "[SAMPLE] Boardwick reports a security incident",
+      "snippet": "SAMPLE: Boardwick disclosed a security incident on 2026-08-11 and said attachment storage was affected for a short time.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/boardwick/situation-2"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "price_change",
+      "date": "2026-09-18",
+      "title": "[SAMPLE] Boardwick price change notice",
+      "snippet": "SAMPLE: Boardwick lists its Plus plan at $19 per seat per month billed annually before the 2027-01-01 change.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/boardwick/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "alternative",
+      "date": "2026-09-28",
+      "title": "[SAMPLE] Kanbrook Business plan pricing",
+      "snippet": "SAMPLE: Kanbrook lists its Business plan at $16 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/boardwick/competitors-1"
+    }
+  ]
+}

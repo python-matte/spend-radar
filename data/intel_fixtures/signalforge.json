@@ -1,0 +1,34 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Signalforge",
+  "fiscal_year_end_month": 3,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "earnings",
+      "date": "2026-10-08",
+      "title": "[SAMPLE] Signalforge misses a quarterly target",
+      "snippet": "SAMPLE: Signalforge said quarterly revenue was below the target it set in 2026-07 and that it will push annual deals before the quarter closes.",
+      "source_type": "earnings call",
+      "url": "https://example.com/sample/signalforge/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-02",
+      "title": "[SAMPLE] Signalforge Growth plan list price",
+      "snippet": "SAMPLE: The Signalforge Growth plan is listed at $55 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/signalforge/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-30",
+      "title": "[SAMPLE] Helpcove Team plan pricing",
+      "snippet": "SAMPLE: Helpcove lists its Team plan at $49 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/signalforge/competitors-1"
+    }
+  ]
+}

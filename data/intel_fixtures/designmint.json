@@ -1,0 +1,34 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Designmint",
+  "fiscal_year_end_month": 9,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "pricing_change",
+      "date": "2026-09-08",
+      "title": "[SAMPLE] Designmint ends its older plan",
+      "snippet": "SAMPLE: Designmint said its older Studio plan will end on 2027-01-31 and customers will move to the Pro plan.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/designmint/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-03",
+      "title": "[SAMPLE] Designmint Pro plan list price",
+      "snippet": "SAMPLE: The Designmint Pro plan is listed at $28 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/designmint/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-29",
+      "title": "[SAMPLE] Shapeloft Team plan pricing",
+      "snippet": "SAMPLE: Shapeloft lists its Team plan at $22 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/designmint/competitors-1"
+    }
+  ]
+}

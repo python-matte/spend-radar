@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Pingmoss",
+  "fiscal_year_end_month": 3,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "outage",
+      "date": "2026-08-02",
+      "title": "[SAMPLE] Pingmoss alerts were delayed",
+      "snippet": "SAMPLE: Pingmoss alerts were delayed by up to 40 minutes on 2026-08-02, according to its status page.",
+      "source_type": "status page",
+      "url": "https://example.com/sample/pingmoss/situation-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "alternative",
+      "date": "2026-09-19",
+      "title": "[SAMPLE] Beaconlark offers a free tier for small teams",
+      "snippet": "SAMPLE: Beaconlark offers a free tier for up to 10 monitors.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/pingmoss/competitors-1"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Docuvane",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "product",
+      "date": "2026-09-01",
+      "title": "[SAMPLE] Docuvane adds bulk send",
+      "snippet": "SAMPLE: Docuvane added a bulk send feature to all plans at no extra charge.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/docuvane/situation-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-22",
+      "title": "[SAMPLE] Inkpost flat plan pricing",
+      "snippet": "SAMPLE: Inkpost lists a flat plan for up to 50 users at $700 per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/docuvane/competitors-1"
+    }
+  ]
+}

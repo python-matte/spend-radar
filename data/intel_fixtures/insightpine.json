@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Insightpine",
+  "fiscal_year_end_month": 9,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "leadership",
+      "date": "2026-08-12",
+      "title": "[SAMPLE] Insightpine appoints a new chief financial officer",
+      "snippet": "SAMPLE: Insightpine appointed a new chief financial officer on 2026-08-12.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/insightpine/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Insightpine Viewer plan list price",
+      "snippet": "SAMPLE: The Insightpine Viewer plan is listed at $30 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/insightpine/pricing-1"
+    }
+  ]
+}

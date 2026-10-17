@@ -1,0 +1,25 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Codepillar",
+  "fiscal_year_end_month": 6,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "security",
+      "date": "2026-07-30",
+      "title": "[SAMPLE] Codepillar patches a token flaw",
+      "snippet": "SAMPLE: Codepillar patched a token handling flaw on 2026-07-30 and said it found no sign of misuse.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/codepillar/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-02",
+      "title": "[SAMPLE] Codepillar Team plan list price",
+      "snippet": "SAMPLE: The Codepillar Team plan is listed at $25 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/codepillar/pricing-1"
+    }
+  ]
+}

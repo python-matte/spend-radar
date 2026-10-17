@@ -1,0 +1,16 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Formkiln",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "leadership",
+      "date": "2026-09-14",
+      "title": "[SAMPLE] Formkiln appoints a new head of customer success",
+      "snippet": "SAMPLE: Formkiln appointed a new head of customer success on 2026-09-14.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/formkiln/situation-1"
+    }
+  ]
+}

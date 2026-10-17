@@ -1,0 +1,34 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Ledgerleaf",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "leadership",
+      "date": "2026-07-14",
+      "title": "[SAMPLE] Ledgerleaf chief executive steps down",
+      "snippet": "SAMPLE: Ledgerleaf said its chief executive will step down at the end of the year while a search is under way.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/ledgerleaf/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-03",
+      "title": "[SAMPLE] Ledgerleaf Standard plan list price",
+      "snippet": "SAMPLE: The Ledgerleaf Standard plan is listed at $105 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/ledgerleaf/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-20",
+      "title": "[SAMPLE] Booksprout plan pricing",
+      "snippet": "SAMPLE: Booksprout lists its Growth plan at $90 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/ledgerleaf/competitors-1"
+    }
+  ]
+}

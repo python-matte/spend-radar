@@ -1,0 +1,43 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Cloudpebble",
+  "fiscal_year_end_month": 9,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "earnings",
+      "date": "2026-09-29",
+      "title": "[SAMPLE] Cloudpebble reports flat customer count",
+      "snippet": "SAMPLE: Cloudpebble reported a flat customer count for the quarter and said it expects to offer more discounts on renewals.",
+      "source_type": "earnings call",
+      "url": "https://example.com/sample/cloudpebble/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Cloudpebble Business plan list price",
+      "snippet": "SAMPLE: The Cloudpebble Business plan is listed at $15 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/cloudpebble/pricing-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "discount_tier",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Cloudpebble pooled storage plan",
+      "snippet": "SAMPLE: Cloudpebble also publishes a pooled storage plan priced at $8 per terabyte per month with no per-seat charge.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/cloudpebble/pricing-2"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-26",
+      "title": "[SAMPLE] Driftvault Team plan pricing",
+      "snippet": "SAMPLE: Driftvault lists its Team plan at $12 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/cloudpebble/competitors-1"
+    }
+  ]
+}

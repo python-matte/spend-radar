@@ -1,0 +1,52 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Chatharbor",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "acquisition",
+      "date": "2026-09-24",
+      "title": "[SAMPLE] Chatharbor agrees to be acquired",
+      "snippet": "SAMPLE: Chatharbor agreed to be acquired by a private fund, with the deal expected to close in 2026-12.",
+      "source_type": "press release",
+      "url": "https://example.com/sample/chatharbor/situation-1"
+    },
+    {
+      "bucket": "situation",
+      "kind": "pricing_change",
+      "date": "2026-08-15",
+      "title": "[SAMPLE] Chatharbor raises list prices",
+      "snippet": "SAMPLE: Chatharbor raised list prices by 9% for annual plans in 2026-08.",
+      "source_type": "company blog",
+      "url": "https://example.com/sample/chatharbor/situation-2"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-01",
+      "title": "[SAMPLE] Chatharbor Pro plan list price",
+      "snippet": "SAMPLE: The Chatharbor Pro plan is listed at $10 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/chatharbor/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-09-30",
+      "title": "[SAMPLE] Talkvale switching offer",
+      "snippet": "SAMPLE: Talkvale offers a migration credit equal to 2 months of fees for teams of 200 seats or more, until 2026-12-15.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/chatharbor/competitors-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "pricing",
+      "date": "2026-09-30",
+      "title": "[SAMPLE] Talkvale Business plan pricing",
+      "snippet": "SAMPLE: Talkvale lists its Business plan at $9 per seat per month billed annually.",
+      "source_type": "competitor pricing page",
+      "url": "https://example.com/sample/chatharbor/competitors-2"
+    }
+  ]
+}

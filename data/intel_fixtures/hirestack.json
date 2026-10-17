@@ -1,0 +1,34 @@
+{
+  "label": "SAMPLE DATA. Every item below is invented for demonstration. It is not real news about any company.",
+  "vendor": "Hirestack",
+  "fiscal_year_end_month": 12,
+  "items": [
+    {
+      "bucket": "situation",
+      "kind": "layoffs",
+      "date": "2026-08-20",
+      "title": "[SAMPLE] Hirestack reduces its sales team",
+      "snippet": "SAMPLE: Hirestack said it reduced its sales team by 15% on 2026-08-20 to cut costs.",
+      "source_type": "news article",
+      "url": "https://example.com/sample/hirestack/situation-1"
+    },
+    {
+      "bucket": "pricing",
+      "kind": "list_price",
+      "date": "2026-10-02",
+      "title": "[SAMPLE] Hirestack Core plan list price",
+      "snippet": "SAMPLE: The Hirestack Core plan is listed at $44 per seat per month billed annually.",
+      "source_type": "pricing page",
+      "url": "https://example.com/sample/hirestack/pricing-1"
+    },
+    {
+      "bucket": "competitors",
+      "kind": "promotion",
+      "date": "2026-09-27",
+      "title": "[SAMPLE] Talentbarn switching offer",
+      "snippet": "SAMPLE: Talentbarn offers 15% off the first year for teams moving from another recruiting tool, until 2026-12-31.",
+      "source_type": "competitor announcement",
+      "url": "https://example.com/sample/hirestack/competitors-1"
+    }
+  ]
+}
