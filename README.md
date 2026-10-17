@@ -16,10 +16,11 @@ When someone does sit down to negotiate, the prep takes days. Then a number from
 
 **After.** I run one command and get:
 
-- a list of contracts that roll over by themselves, soonest deadline first
-- a ranked top 10 of where the money is, with a low and a high estimate and the assumption next to each
-- a brief for one vendor: where we stand, what we can use in the room, our alternatives, the asks in order, what to keep quiet, questions, and a dated timeline
+- a one-screen report that starts with a recommendation and the contracts I must decide on now, each with a date and a saving range
+- a dashboard: one HTML file with a renewal timeline, savings ranges, seat use and spend by team
+- a brief for one vendor. It opens with a recommendation, then: where we stand, what we can use in the room, our alternatives, the asks in order, what to keep quiet, questions, and a dated timeline
 - a check on that brief. Every claim names its source and quotes it. If the quote or a number can't be found, the claim goes under a heading that says "Unverified, check before using"
+- a monthly digest: one email and one Slack message per team lead, with what changed since last month. It is a dry run unless I pass `--send`
 
 ## How I run it
 
@@ -34,11 +35,14 @@ pip install -e ".[dev]"
 The commands:
 
 ```bash
+spend-radar report                   # one screen: recommendation and decisions
+spend-radar report --full            # the same, plus the detail tables
+spend-radar dashboard --out dash.html   # charts in one HTML file
+spend-radar digest                   # monthly email and Slack messages, written to a folder
 spend-radar analyze                  # findings and the ranked top 10, printed to the screen
 spend-radar analyze --json           # the same, as JSON
 spend-radar intel Taskwave           # the evidence collected for one vendor
 spend-radar brief Taskwave           # the negotiation brief
-spend-radar report --out report.md   # the full portfolio report
 ```
 
 Useful options:
@@ -77,62 +81,60 @@ I planted these findings on purpose, and the tests check that each one is found:
 
 ## Sample report
 
-This is from `spend-radar report`. The full version, including the renewals table, overlaps and unused seats, is in `examples/report.md`. A sample brief is in `examples/brief_taskwave.md`. A brief for a contract whose window has closed is in `examples/brief_boardwick.md`.
+This is the whole of `spend-radar report`. The version with the renewals table, overlaps and unused seats is `examples/report_full.md`. A sample brief is `examples/brief_taskwave.md`, and one for a contract whose window has closed is `examples/brief_boardwick.md`.
 
-### Summary
+### At a glance
 
-- Total annual software spend: $619,800.
-- Estimated recoverable: $51,688 to $103,375 a year. This is a range built from stated assumptions. It is not a promise. Savings inside one category can overlap, so read the total as a rough upper sketch.
-- Notice deadline in the next 30 days: 2.
-- Notice window already closed with auto-renew on: 1.
-- Vendors under 60% seat usage: 4.
-- Vendors with a last uplift of 8% or more: 1.
-- Categories with more than one vendor: 2.
-- Contracts on auto-renew: 20. Of those, 19 have no approved exception.
+**Recommendation: Start with Taskwave. Negotiate or give notice by 2026-10-21 (4 days). Planhive is a cheaper option for these seats. Then Meetly, Boardwick.**
 
-### Auto-renew watchlist
+- **Decide now:** 3 contracts, with $12,030 to $24,060 a year at stake. These are inside the notice window or already locked in.
+- **Coming up:** 5 more decisions in the next 90 days. 13 later.
+- **Spend:** $619,800 a year. Rough recoverable range $51,688 to $103,375. Estimates, not promises.
+- **Auto-renew:** 19 of 20 auto-renew contracts have no approved exception. The goal is none.
 
-Our goal is no auto-renew on any contract. Each line below rolls over unless we act by the notice deadline. An approved exception is the rare case.
+### Decide now
 
-| Vendor | Annual cost | Notice deadline | Days | Rolls over on | Status | Approved exception |
-|---|---|---|---|---|---|---|
-| Boardwick | $26,400 | 2026-09-28 | 19 ago | 2026-11-12 | window closed | NONE |
-| Taskwave | $48,000 | 2026-10-21 | 4 | 2026-12-20 | act now | NONE |
-| Meetly | $22,800 | 2026-10-31 | 14 | 2026-11-30 | act now | NONE |
-| Ledgerleaf | $18,600 | 2026-12-02 | 46 | 2027-01-31 | upcoming | Head of Finance |
-| Chatharbor | $36,000 | 2026-12-06 | 50 | 2027-01-20 | upcoming | NONE |
-| Signalforge | $42,000 | 2026-12-07 | 51 | 2027-02-05 | upcoming | NONE |
-| Cloudpebble | $54,000 | 2026-12-12 | 56 | 2027-02-10 | upcoming | NONE |
-| Designmint | $19,800 | 2027-01-06 | 81 | 2027-02-20 | upcoming | NONE |
-| Planhive | $31,500 | 2027-01-29 | 104 | 2027-03-15 | fine | NONE |
-| Docuvane | $9,600 | 2027-01-30 | 105 | 2027-03-01 | fine | NONE |
-| Quillboard | $13,500 | 2027-02-03 | 109 | 2027-03-20 | fine | NONE |
-| Securenook | $8,400 | 2027-02-03 | 109 | 2027-03-05 | fine | NONE |
-| Formkiln | $4,800 | 2027-03-01 | 135 | 2027-03-31 | fine | NONE |
-| Payloom | $15,600 | 2027-03-01 | 135 | 2027-04-30 | fine | NONE |
-| Codepillar | $27,000 | 2027-03-11 | 145 | 2027-04-10 | fine | NONE |
-| Voxdesk | $33,000 | 2027-03-11 | 145 | 2027-05-10 | fine | NONE |
-| Calendrift | $3,600 | 2027-03-23 | 157 | 2027-04-22 | fine | NONE |
-| Datanest | $96,000 | 2027-04-01 | 166 | 2027-06-30 | fine | NONE |
-| Insightpine | $38,000 | 2027-04-16 | 181 | 2027-06-15 | fine | NONE |
-| Pingmoss | $7,200 | 2027-05-02 | 197 | 2027-06-01 | fine | NONE |
-
-### Top 10 priorities
-
-Score is the middle of the saving range, times a status weight (act now 2.0, window closed 1.5, upcoming 1.0, fine 0.5), times 1.25 if auto-renew has no approved exception.
-
-| Rank | Vendor | Status | Saving range a year | Score | Why |
+| Vendor | Team | Action | Decide by | Saving a year | What to do |
 |---|---|---|---|---|---|
-| 1 | Cloudpebble | upcoming | $13,320 to $26,640 | 24,975 | notice deadline in 56 days; auto-renew with no approved exception; 46% of seats in use |
-| 2 | Taskwave | act now | $6,150 to $12,300 | 23,062 | notice deadline in 4 days; auto-renew with no approved exception; overlaps with a cheaper tool |
-| 3 | Meetly | act now | $3,180 to $6,360 | 11,925 | notice deadline in 14 days; auto-renew with no approved exception; 65% of seats in use |
-| 4 | Boardwick | window closed | $2,700 to $5,400 | 7,594 | notice deadline passed 19 days ago, rolls over on 2026-11-12; auto-renew with no approved exception; overlaps with a cheaper tool |
-| 5 | Designmint | upcoming | $3,795 to $7,590 | 7,116 | notice deadline in 81 days; auto-renew with no approved exception; 55% of seats in use |
-| 6 | Hirestack | upcoming | $4,200 to $8,400 | 6,300 | renews in 83 days, no auto-renew; 52% of seats in use |
-| 7 | Planhive | fine | $5,985 to $11,970 | 5,611 | notice deadline in 104 days; auto-renew with no approved exception; 56% of seats in use |
-| 8 | Insightpine | fine | $4,400 to $8,800 | 4,125 | notice deadline in 181 days; auto-renew with no approved exception; 69% of seats in use |
-| 9 | Chatharbor | upcoming | $1,140 to $2,280 | 2,138 | notice deadline in 50 days; auto-renew with no approved exception; 85% of seats in use |
-| 10 | Voxdesk | fine | $1,980 to $3,960 | 1,856 | notice deadline in 145 days; auto-renew with no approved exception; 80% of seats in use |
+| **Taskwave** | Engineering | Negotiate now | 2026-10-21 | $6,150 to $12,300 | Negotiate or give notice by 2026-10-21 (4 days). Planhive is a cheaper option for these seats. |
+| **Meetly** | IT | Negotiate now | 2026-10-31 | $3,180 to $6,360 | Negotiate or give notice by 2026-10-31 (14 days). 53 seats are unused. |
+| **Boardwick** | Operations | Escalate the rollover | 2026-11-12 | $2,700 to $5,400 | Ask in writing to be released from the rollover on 2026-11-12. The notice deadline passed 19 days ago. |
+
+### Coming up (next 90 days)
+
+| Vendor | Team | Action | Decide by | Saving a year | What to do |
+|---|---|---|---|---|---|
+| **Cloudpebble** | IT | Cut unused seats | 2026-12-12 | $13,320 to $26,640 | Cut 148 unused seats at renewal. Only 46% of seats are in use. Decide by 2026-12-12. |
+| **Hirestack** | People | Cut unused seats | 2027-01-08 | $4,200 to $8,400 | Cut 16 unused seats at renewal. Only 52% of seats are in use. Decide by 2027-01-08. |
+| **Designmint** | Marketing | Cut unused seats | 2027-01-06 | $3,795 to $7,590 | Cut 23 unused seats at renewal. Only 55% of seats are in use. Decide by 2027-01-06. |
+| **Chatharbor** | IT | Cap the uplift | 2026-12-06 | $1,140 to $2,280 | Cap the uplift. The last one was 9.5%. Decide by 2026-12-06. |
+| **Signalforge** | Support | Remove auto-renew | 2026-12-07 | $600 to $1,200 | Ask to remove auto-renew. Decide by 2026-12-07. |
+
+### Later (13)
+
+Planhive, Insightpine, Huddlefox, Voxdesk, Quillboard, Payloom, Calendrift, Securenook, Codepillar, Datanest, Docuvane, Formkiln, Pingmoss.
+
+### Auto-renew watchlist, soonest first
+
+| Vendor | Notice deadline | Days | Rolls over on | Approved exception |
+|---|---|---|---|---|
+| Boardwick | 2026-09-28 | 19 ago | 2026-11-12 | NONE |
+| Taskwave | 2026-10-21 | 4 | 2026-12-20 | NONE |
+| Meetly | 2026-10-31 | 14 | 2026-11-30 | NONE |
+| Ledgerleaf | 2026-12-02 | 46 | 2027-01-31 | Head of Finance |
+| Chatharbor | 2026-12-06 | 50 | 2027-01-20 | NONE |
+
+15 more auto-renew contracts are in the full report.
+
+## Dashboard
+
+`spend-radar dashboard` writes one HTML file. Open it in a browser. It has four views: when each decision falls due, where the money is, seats we pay for but do not use, and spend by team. It has no scripts and makes no outside requests. Hover a row for details. The timeline has a table view. A sample is `examples/dashboard.html`.
+
+## Monthly digest
+
+`spend-radar digest` builds one email and one Slack message per recipient. The spend owner gets everything and the dashboard. Each team lead gets only their own vendors. Each message has a recommendation first, then what to decide now, what is coming up, and what changed since last month.
+
+By default it only writes the messages to a folder. It sends nothing. Sending needs `--send`, real contacts and credentials in environment variables. The samples in `examples/digest/` use placeholder addresses. I show how I would schedule it in `docs/monthly-run.md`. I have not scheduled or sent anything.
 
 ## The verifier
 
@@ -153,6 +155,10 @@ Anything that fails is listed under "Unverified, check before using" with the re
 - **Cost per seat is a blunt average.** Real contracts have tiers, minimums and add-ons that a CSV does not hold.
 - **Live mode is thin.** It reads headlines and one optional pricing page. It does not search for competitors. I tested it with fake HTTP clients, not the real network.
 - **Category savings can overlap.** The portfolio total is a rough upper sketch.
+- **Decisions are rules, not judgment.** "Decide now" means the notice window is open and close, or has closed. A person still has to decide.
+- **Sending is untested for real.** The email and Slack code was tested with fake servers. It has never sent a real message.
+- **"Last month" in the samples is simulated.** I ran the tool with an earlier date to make a first snapshot.
+- **Dashboard dark mode is unchecked.** I looked at it in light mode on desktop and phone width. The dark colours follow a validated palette, but I have not seen them rendered.
 
 ## Project layout
 
@@ -165,10 +171,14 @@ src/spend_radar/
   cli.py          analyze, intel, brief, report
   loader.py       reads the CSV
   report.py       portfolio report
+  dashboard.py    one-file HTML dashboard
+  digest.py       monthly email and Slack messages, snapshots
+  notify.py       sending, with checks first
+config/           notify.example.json (placeholder contacts)
 data/             vendors.csv and intel_fixtures/
 examples/         committed sample outputs
 tests/            pytest
-docs/             how the numbers work, the verifier, live mode
+docs/             how the numbers work, the verifier, live mode, the monthly run
 ```
 
 ## Tests and CI

@@ -18,6 +18,7 @@ from .schemas import (
     Analysis,
     BriefClaims,
     Claim,
+    Decision,
     EvidenceItem,
     FlaggedClaim,
     IntelBundle,
@@ -648,6 +649,34 @@ def _timeline_lines(vendor: Vendor, analysis: Analysis) -> list[str]:
     return out
 
 
+def render_recommendation(decision: Decision, v: BriefClaims, as_of) -> list[str]:
+    start = (
+        f"start talks now (the {decision.start_by.isoformat()} start date has passed)"
+        if decision.start_by <= as_of
+        else f"start talks by {decision.start_by.isoformat()}"
+    )
+    saving = (
+        f"{cl.money(round(decision.saving_low))} to {cl.money(round(decision.saving_high))} a year"
+        if decision.saving_high > 0
+        else "no estimate"
+    )
+    out = [
+        "## Recommendation",
+        "",
+        f"**{decision.action.value}. {decision.headline}**",
+        "",
+        f"- **Decide by:** {decision.decide_by.isoformat()}. Also {start}.",
+        f"- **Estimated saving:** {saving}. An estimate, not a quote.",
+    ]
+    if v.asks:
+        lead = " ".join(f"({n}) {c.text}" for n, c in enumerate(v.asks[:3], start=1))
+        out.append(f"- **Lead with:** {lead}")
+    if v.alternatives:
+        out.append(f"- **Walk-away:** {v.alternatives[-1].text}")
+    out.append("")
+    return out
+
+
 def render_brief(
     vendor: Vendor,
     analysis: Analysis,
@@ -675,6 +704,9 @@ def render_brief(
     for note in notes:
         out.append(f"> {note}")
     out.append("")
+
+    decision = cl.decision_for(analysis, vendor.vendor)
+    out += render_recommendation(decision, v, analysis.as_of)
 
     out += ["## 1. Where we stand", ""] + render_where_we_stand(vendor, analysis, bundle)
 

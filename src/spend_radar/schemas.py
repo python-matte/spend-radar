@@ -118,6 +118,51 @@ class PriorityItem(BaseModel):
     why: str
 
 
+class Urgency(StrEnum):
+    NOW = "now"
+    SOON = "soon"
+    LATER = "later"
+
+
+class Action(StrEnum):
+    ESCALATE_ROLLOVER = "Escalate the rollover"
+    NEGOTIATE_NOW = "Negotiate now"
+    CONSOLIDATE = "Consolidate"
+    RIGHT_SIZE = "Cut unused seats"
+    CAP_UPLIFT = "Cap the uplift"
+    REMOVE_AUTO_RENEW = "Remove auto-renew"
+    WATCH = "Watch"
+
+
+class Decision(BaseModel):
+    vendor: str
+    owner_team: str
+    action: Action
+    urgency: Urgency
+    status: RenewalStatus
+    headline: str
+    decide_by: date
+    start_by: date
+    annual_cost: float
+    saving_low: float = 0.0
+    saving_high: float = 0.0
+    auto_renew_no_exception: bool = False
+
+
+class Overview(BaseModel):
+    total_spend: float
+    saving_low: float
+    saving_high: float
+    now_count: int
+    now_saving_low: float
+    now_saving_high: float
+    soon_count: int
+    later_count: int
+    auto_renew_no_exception: int
+    auto_renew_total: int
+    recommendation: str
+
+
 class Analysis(BaseModel):
     as_of: date
     total_spend: float
@@ -127,6 +172,7 @@ class Analysis(BaseModel):
     priorities: list[PriorityItem]
     vendor_saving_low: dict[str, float]
     vendor_saving_high: dict[str, float]
+    decisions: list[Decision] = Field(default_factory=list)
 
 
 Bucket = Literal["situation", "pricing", "competitors", "our_position"]
@@ -214,3 +260,40 @@ class IntelBundle(BaseModel):
             if item.id == evidence_id:
                 return item
         return None
+
+
+class SnapshotEntry(BaseModel):
+    status: RenewalStatus
+    urgency: Urgency
+    action: Action
+    renewal_date: date
+    auto_renew: bool
+    days_to_deadline: int
+    saving_mid: float
+
+
+class Snapshot(BaseModel):
+    """What the portfolio looked like on one run. Saved so the next run can say what changed."""
+
+    as_of: date
+    total_spend: float
+    vendors: dict[str, SnapshotEntry]
+
+
+class Change(BaseModel):
+    vendor: str
+    kind: str
+    text: str
+
+
+class Contact(BaseModel):
+    name: str
+    email: str
+    slack_channel: str | None = None
+    # Name of the environment variable that holds the Slack webhook URL. Never the URL itself.
+    slack_webhook_env: str | None = None
+
+
+class NotifyConfig(BaseModel):
+    default_owner: Contact
+    teams: dict[str, Contact] = Field(default_factory=dict)

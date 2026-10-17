@@ -1,0 +1,57 @@
+{
+  "text": "[Spend radar] October 2026: 1 decision due now, $2,700 to $5,400 at stake (Operations)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 1 decision due now, $2,700 to $5,400 at stake (Operations)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nStart with Boardwick. Ask in writing to be released from the rollover on 2026-11-12. The notice deadline passed 19 days ago."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your spend*\nOperations owns 3 contracts worth $72,900 a year."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\n\u2022 Boardwick (Operations), $2,700 to $5,400 a year: Ask in writing to be released from the rollover on 2026-11-12. The notice deadline passed 19 days ago."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\nNothing in the next 90 days."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\n\u2022 Boardwick: The notice window closed. The contract will roll over on 2026-11-12 unless the vendor agrees otherwise."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#ops"
+}

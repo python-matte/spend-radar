@@ -1,0 +1,57 @@
+{
+  "text": "[Spend radar] October 2026: 0 decisions due now (Support)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 0 decisions due now (Support)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nPrepare Signalforge next. Ask to remove auto-renew. Decide by 2026-12-07."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your spend*\nSupport owns 1 contracts worth $42,000 a year."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\nNothing is inside the notice window."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\n\u2022 Signalforge (Support), $600 to $1,200 a year: Ask to remove auto-renew. Decide by 2026-12-07."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\nNo changes."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#support-ops"
+}

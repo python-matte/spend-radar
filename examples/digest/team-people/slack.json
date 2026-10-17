@@ -1,0 +1,57 @@
+{
+  "text": "[Spend radar] October 2026: 0 decisions due now (People)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 0 decisions due now (People)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nPrepare Hirestack next. Cut 16 unused seats at renewal. Only 52% of seats are in use. Decide by 2027-01-08."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your spend*\nPeople owns 2 contracts worth $32,000 a year."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\nNothing is inside the notice window."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\n\u2022 Hirestack (People), $4,200 to $8,400 a year: Cut 16 unused seats at renewal. Only 52% of seats are in use. Decide by 2027-01-08."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\n\u2022 Hirestack: Moved from fine to upcoming."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#people-ops"
+}

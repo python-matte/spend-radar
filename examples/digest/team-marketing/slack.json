@@ -1,0 +1,57 @@
+{
+  "text": "[Spend radar] October 2026: 0 decisions due now (Marketing)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 0 decisions due now (Marketing)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nPrepare Designmint next. Cut 23 unused seats at renewal. Only 55% of seats are in use. Decide by 2027-01-06."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your spend*\nMarketing owns 3 contracts worth $36,600 a year."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\nNothing is inside the notice window."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\n\u2022 Designmint (Marketing), $3,795 to $7,590 a year: Cut 23 unused seats at renewal. Only 55% of seats are in use. Decide by 2027-01-06."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\n\u2022 Designmint: Moved from fine to upcoming."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#marketing-tools"
+}

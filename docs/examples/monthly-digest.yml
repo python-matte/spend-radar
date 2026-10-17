@@ -1,0 +1,39 @@
+# EXAMPLE ONLY. This file is not in .github/workflows, so GitHub will not run it.
+# It shows how I would schedule the monthly digest if I used GitHub Actions.
+#
+# Before using it for real:
+#   1. Copy config/notify.example.json to config/notify.json and put in real contacts.
+#   2. Store the SMTP and Slack values as repository secrets.
+#   3. Move it to .github/workflows/ and remove the comment on --send.
+#   4. Keep the snapshot somewhere that does not expire. Actions caches can be evicted.
+
+name: Monthly spend digest
+
+on:
+  schedule:
+    - cron: "0 7 1 * *" # 07:00 UTC on the first day of each month
+  workflow_dispatch: {}
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -e .
+      - name: Restore last month's snapshot
+        uses: actions/cache@v4
+        with:
+          path: .spend_radar_state
+          key: spend-radar-state-${{ github.run_id }}
+          restore-keys: spend-radar-state-
+      - name: Build and send the digest
+        env:
+          SPEND_RADAR_SMTP_HOST: ${{ secrets.SPEND_RADAR_SMTP_HOST }}
+          SPEND_RADAR_SMTP_USER: ${{ secrets.SPEND_RADAR_SMTP_USER }}
+          SPEND_RADAR_SMTP_PASSWORD: ${{ secrets.SPEND_RADAR_SMTP_PASSWORD }}
+          SPEND_RADAR_FROM: ${{ secrets.SPEND_RADAR_FROM }}
+          SPEND_RADAR_SLACK_WEBHOOK: ${{ secrets.SPEND_RADAR_SLACK_WEBHOOK }}
+        run: spend-radar digest --as-of "$(date -u +%F)" --config config/notify.json # --send

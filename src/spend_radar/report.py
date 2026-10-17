@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from . import core_logic as cl
 from .core_logic import money
-from .schemas import Analysis, RenewalStatus, Vendor
+from .schemas import Analysis, Decision, RenewalStatus, Urgency, Vendor
 
 
 def _range(low: float, high: float) -> str:
@@ -37,11 +37,33 @@ def _counts(vendors: list[Vendor], analysis: Analysis) -> dict[str, int]:
     }
 
 
-def render_report(vendors: list[Vendor], analysis: Analysis, sample: bool = True) -> str:
+def _decision_table(decisions: list[Decision]) -> list[str]:
+    rows = []
+    for d in decisions:
+        saving = _range(d.saving_low, d.saving_high) if d.saving_high > 0 else "no estimate"
+        rows.append(
+            [
+                f"**{d.vendor}**",
+                d.owner_team,
+                d.action.value,
+                d.decide_by.isoformat(),
+                saving,
+                d.headline,
+            ]
+        )
+    return _table(["Vendor", "Team", "Action", "Decide by", "Saving a year", "What to do"], rows)
+
+
+def render_report(
+    vendors: list[Vendor], analysis: Analysis, sample: bool = True, full: bool = False
+) -> str:
     by_name = {v.vendor: v for v in vendors}
-    counts = _counts(vendors, analysis)
-    total_low = sum(analysis.vendor_saving_low.values())
-    total_high = sum(analysis.vendor_saving_high.values())
+    ov = cl.build_overview(vendors, analysis)
+    todo = cl.actionable(analysis.decisions)
+    now = [d for d in todo if d.urgency is Urgency.NOW]
+    soon = [d for d in todo if d.urgency is Urgency.SOON]
+    later = [d for d in todo if d.urgency is Urgency.LATER]
+
     out: list[str] = ["# Spend radar report", ""]
     out.append(f"As of {analysis.as_of.isoformat()}. {len(vendors)} vendors.")
     out.append("")
@@ -51,23 +73,65 @@ def render_report(vendors: list[Vendor], analysis: Analysis, sample: bool = True
             "",
         ]
 
-    out += ["## Summary", ""]
+    out += ["## At a glance", ""]
+    out += [f"**Recommendation: {ov.recommendation}**", ""]
     out += [
-        f"- Total annual software spend: {money(analysis.total_spend)}.",
-        f"- Estimated recoverable: {_range(total_low, total_high)} a year. This is a range "
-        "built from stated assumptions. It is not a promise. Savings inside one category can "
-        "overlap, so read the total as a rough upper sketch.",
-        f"- Notice deadline in the next {cl.ACT_NOW_DAYS} days: {counts['act_now']}.",
-        f"- Notice window already closed with auto-renew on: {counts['window_closed']}.",
-        f"- Vendors under {cl.LOW_USAGE_PCT}% seat usage: {counts['low_usage']}.",
-        f"- Vendors with a last uplift of {cl.HIGH_UPLIFT_PCT}% or more: {counts['high_uplift']}.",
-        f"- Categories with more than one vendor: {counts['overlap_groups']}.",
-        f"- Contracts on auto-renew: {counts['auto_total']}. "
-        f"Of those, {counts['auto_no_exception']} have no approved exception.",
+        f"- **Decide now:** {ov.now_count} contracts, with "
+        f"{_range(ov.now_saving_low, ov.now_saving_high)} a year at stake. These are inside "
+        "the notice window or already locked in.",
+        f"- **Coming up:** {ov.soon_count} more decisions in the next 90 days. "
+        f"{ov.later_count} later.",
+        f"- **Spend:** {money(ov.total_spend)} a year. Rough recoverable range "
+        f"{_range(ov.saving_low, ov.saving_high)}. Estimates, not promises.",
+        f"- **Auto-renew:** {ov.auto_renew_no_exception} of {ov.auto_renew_total} auto-renew "
+        "contracts have no approved exception. The goal is none.",
         "",
     ]
 
-    out += ["## Auto-renew watchlist", ""]
+    out += ["## Decide now", ""]
+    out += _decision_table(now) if now else ["Nothing is inside the notice window.", ""]
+
+    out += ["## Coming up (next 90 days)", ""]
+    out += _decision_table(soon) if soon else ["Nothing in the next 90 days.", ""]
+
+    if later:
+        names = ", ".join(d.vendor for d in later)
+        out += [f"## Later ({len(later)})", "", f"{names}.", ""]
+
+    out += ["## Auto-renew watchlist, soonest first", ""]
+    watch = [
+        (r, by_name[r.vendor])
+        for r in sorted(analysis.renewals, key=lambda r: (r.notice_deadline, r.vendor))
+        if by_name[r.vendor].auto_renew
+    ]
+    out += _table(
+        ["Vendor", "Notice deadline", "Days", "Rolls over on", "Approved exception"],
+        [
+            [
+                v.vendor,
+                r.notice_deadline.isoformat(),
+                _days(r.days_to_deadline),
+                r.renewal_date.isoformat(),
+                v.auto_renew_approved_by or "NONE",
+            ]
+            for r, v in watch[:5]
+        ],
+    )
+    if len(watch) > 5:
+        out += [f"{len(watch) - 5} more auto-renew contracts are in the full report.", ""]
+
+    if not full:
+        out += [
+            "---",
+            "",
+            "More detail: `spend-radar report --full`. Charts: `spend-radar dashboard`. "
+            "A brief for one vendor: `spend-radar brief <vendor>`.",
+            "",
+        ]
+        return "\n".join(out).rstrip() + "\n"
+
+    out += ["---", "", "# Detail", ""]
+    out += ["## Auto-renew watchlist (all)", ""]
     out += [
         "Our goal is no auto-renew on any contract. Each line below rolls over unless we act "
         "by the notice deadline. An approved exception is the rare case.",

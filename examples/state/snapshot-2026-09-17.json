@@ -1,0 +1,231 @@
+{
+  "as_of": "2026-09-17",
+  "total_spend": 619800.0,
+  "vendors": {
+    "Taskwave": {
+      "status": "upcoming",
+      "urgency": "soon",
+      "action": "Consolidate",
+      "renewal_date": "2026-12-20",
+      "auto_renew": true,
+      "days_to_deadline": 34,
+      "saving_mid": 9225.0
+    },
+    "Planhive": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-03-15",
+      "auto_renew": true,
+      "days_to_deadline": 134,
+      "saving_mid": 8977.5
+    },
+    "Boardwick": {
+      "status": "act now",
+      "urgency": "now",
+      "action": "Negotiate now",
+      "renewal_date": "2026-11-12",
+      "auto_renew": true,
+      "days_to_deadline": 11,
+      "saving_mid": 4050.0
+    },
+    "Meetly": {
+      "status": "upcoming",
+      "urgency": "soon",
+      "action": "Cut unused seats",
+      "renewal_date": "2026-11-30",
+      "auto_renew": true,
+      "days_to_deadline": 44,
+      "saving_mid": 4770.0
+    },
+    "Huddlefox": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Consolidate",
+      "renewal_date": "2027-05-01",
+      "auto_renew": false,
+      "days_to_deadline": 196,
+      "saving_mid": 3480.0
+    },
+    "Datanest": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-06-30",
+      "auto_renew": true,
+      "days_to_deadline": 196,
+      "saving_mid": 0.0
+    },
+    "Ledgerleaf": {
+      "status": "upcoming",
+      "urgency": "later",
+      "action": "Watch",
+      "renewal_date": "2027-01-31",
+      "auto_renew": true,
+      "days_to_deadline": 76,
+      "saving_mid": 930.0
+    },
+    "Docuvane": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-03-01",
+      "auto_renew": true,
+      "days_to_deadline": 135,
+      "saving_mid": 0.0
+    },
+    "Chatharbor": {
+      "status": "upcoming",
+      "urgency": "soon",
+      "action": "Cap the uplift",
+      "renewal_date": "2027-01-20",
+      "auto_renew": true,
+      "days_to_deadline": 80,
+      "saving_mid": 1710.0
+    },
+    "Codepillar": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-04-10",
+      "auto_renew": true,
+      "days_to_deadline": 175,
+      "saving_mid": 0.0
+    },
+    "Mailorbit": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Watch",
+      "renewal_date": "2027-02-01",
+      "auto_renew": false,
+      "days_to_deadline": 107,
+      "saving_mid": 0.0
+    },
+    "Cloudpebble": {
+      "status": "upcoming",
+      "urgency": "soon",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-02-10",
+      "auto_renew": true,
+      "days_to_deadline": 86,
+      "saving_mid": 19980.0
+    },
+    "Securenook": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-03-05",
+      "auto_renew": true,
+      "days_to_deadline": 139,
+      "saving_mid": 112.5
+    },
+    "Hirestack": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-01-08",
+      "auto_renew": false,
+      "days_to_deadline": 83,
+      "saving_mid": 6300.0
+    },
+    "Payloom": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-04-30",
+      "auto_renew": true,
+      "days_to_deadline": 165,
+      "saving_mid": 540.0
+    },
+    "Designmint": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-02-20",
+      "auto_renew": true,
+      "days_to_deadline": 111,
+      "saving_mid": 5692.5
+    },
+    "Learnbarn": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Watch",
+      "renewal_date": "2027-05-15",
+      "auto_renew": false,
+      "days_to_deadline": 210,
+      "saving_mid": 0.0
+    },
+    "Formkiln": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-03-31",
+      "auto_renew": true,
+      "days_to_deadline": 165,
+      "saving_mid": 0.0
+    },
+    "Pingmoss": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-06-01",
+      "auto_renew": true,
+      "days_to_deadline": 227,
+      "saving_mid": 0.0
+    },
+    "Quillboard": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-03-20",
+      "auto_renew": true,
+      "days_to_deadline": 139,
+      "saving_mid": 843.75
+    },
+    "Roomkite": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Watch",
+      "renewal_date": "2027-07-01",
+      "auto_renew": false,
+      "days_to_deadline": 257,
+      "saving_mid": 0.0
+    },
+    "Signalforge": {
+      "status": "upcoming",
+      "urgency": "soon",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-02-05",
+      "auto_renew": true,
+      "days_to_deadline": 81,
+      "saving_mid": 900.0
+    },
+    "Calendrift": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Remove auto-renew",
+      "renewal_date": "2027-04-22",
+      "auto_renew": true,
+      "days_to_deadline": 187,
+      "saving_mid": 450.0
+    },
+    "Voxdesk": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-05-10",
+      "auto_renew": true,
+      "days_to_deadline": 175,
+      "saving_mid": 2970.0
+    },
+    "Insightpine": {
+      "status": "fine",
+      "urgency": "later",
+      "action": "Cut unused seats",
+      "renewal_date": "2027-06-15",
+      "auto_renew": true,
+      "days_to_deadline": 211,
+      "saving_mid": 6600.0
+    }
+  }
+}

@@ -9,6 +9,8 @@ from pathlib import Path
 
 from . import core_logic as cl
 from .brief import build_brief
+from .dashboard import render_dashboard
+from .digest import build_digest, load_previous_snapshot, save_snapshot, write_dry_run
 from .intel import (
     FixtureProvider,
     NewsProvider,
@@ -17,6 +19,7 @@ from .intel import (
     render_intel_markdown,
 )
 from .loader import AS_OF, default_data_dir, find_vendor, load_vendors
+from .notify import NotifyError, load_config, send_all
 from .report import render_analyze_text, render_report
 
 
@@ -57,7 +60,24 @@ def _parser() -> argparse.ArgumentParser:
                 "--no-llm", action="store_true", help="use the rule-based template even with a key"
             )
 
-    sub.add_parser("report", parents=[common], help="write the full portfolio report")
+    sub.add_parser("dashboard", parents=[common], help="write a one-file HTML dashboard")
+
+    d = sub.add_parser(
+        "digest", parents=[common], help="build the monthly email and Slack messages"
+    )
+    d.add_argument("--config", type=Path, default=Path("config/notify.example.json"))
+    d.add_argument("--state-dir", type=Path, default=Path(".spend_radar_state"))
+    d.add_argument("--out-dir", type=Path, default=Path("digest_out"))
+    d.add_argument("--no-save-state", action="store_true", help="do not save this run's snapshot")
+    d.add_argument(
+        "--send",
+        action="store_true",
+        help="really send the email and Slack messages. Off by default. Without it, "
+        "messages are only written to --out-dir.",
+    )
+
+    r = sub.add_parser("report", parents=[common], help="write the portfolio report")
+    r.add_argument("--full", action="store_true", help="add the detail tables")
     return parser
 
 
@@ -81,6 +101,40 @@ def _emit(text: str, out: Path | None) -> None:
         sys.stdout.write(text)
 
 
+def _digest(args: argparse.Namespace, vendors, analysis) -> int:
+    try:
+        config = load_config(args.config)
+    except NotifyError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+    previous = load_previous_snapshot(args.state_dir, analysis.as_of)
+    snapshot = cl.make_snapshot(vendors, analysis)
+    changes = cl.diff_snapshots(previous, snapshot)
+    sample = args.data is None or args.data.resolve() == (default_data_dir() / "vendors.csv")
+    messages = build_digest(vendors, analysis, changes, config, previous, sample=sample)
+    dashboard = render_dashboard(vendors, analysis, sample=sample)
+
+    if args.send:
+        try:
+            sent = send_all(messages, dashboard)
+        except NotifyError as exc:
+            print(exc, file=sys.stderr)
+            return 2
+        print(f"Sent {len(sent)} email and Slack messages: {', '.join(sent)}")
+    else:
+        files = write_dry_run(messages, args.out_dir, dashboard)
+        print("Dry run. Nothing was sent.")
+        for m in messages:
+            print(f"  {m.recipient_key}: {m.contact.name} <{m.contact.email}>  {m.subject}")
+        print(f"Wrote {len(files)} files to {args.out_dir}/")
+    if previous is None:
+        print("No earlier snapshot found, so there is nothing to compare with.")
+    if not args.no_save_state:
+        path = save_snapshot(args.state_dir, snapshot)
+        print(f"Saved snapshot {path}")
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     args = _parser().parse_args(argv)
     try:
@@ -99,9 +153,19 @@ def main(argv: list[str] | None = None) -> int:
         _emit(text, args.out)
         return 0
 
+    if args.command == "dashboard":
+        sample = args.data is None or args.data.resolve() == (default_data_dir() / "vendors.csv")
+        _emit(
+            render_dashboard(vendors, analysis, sample=sample), args.out or Path("dashboard.html")
+        )
+        return 0
+
+    if args.command == "digest":
+        return _digest(args, vendors, analysis)
+
     if args.command == "report":
         sample = args.data is None or args.data.resolve() == (default_data_dir() / "vendors.csv")
-        _emit(render_report(vendors, analysis, sample=sample), args.out)
+        _emit(render_report(vendors, analysis, sample=sample, full=args.full), args.out)
         return 0
 
     try:

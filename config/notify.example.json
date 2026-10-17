@@ -1,0 +1,46 @@
+{
+  "default_owner": {
+    "name": "Spend owner",
+    "email": "spend-owner@example.com",
+    "slack_channel": "#software-spend",
+    "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK"
+  },
+  "teams": {
+    "Engineering": {
+      "name": "Engineering lead",
+      "email": "engineering-lead@example.com",
+      "slack_channel": "#eng-tools",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_ENGINEERING"
+    },
+    "IT": {
+      "name": "IT lead",
+      "email": "it-lead@example.com",
+      "slack_channel": "#it-ops",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_IT"
+    },
+    "Operations": {
+      "name": "Operations lead",
+      "email": "operations-lead@example.com",
+      "slack_channel": "#ops",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_OPERATIONS"
+    },
+    "People": {
+      "name": "People lead",
+      "email": "people-lead@example.com",
+      "slack_channel": "#people-ops",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_PEOPLE"
+    },
+    "Marketing": {
+      "name": "Marketing lead",
+      "email": "marketing-lead@example.com",
+      "slack_channel": "#marketing-tools",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_MARKETING"
+    },
+    "Support": {
+      "name": "Support lead",
+      "email": "support-lead@example.com",
+      "slack_channel": "#support-ops",
+      "slack_webhook_env": "SPEND_RADAR_SLACK_WEBHOOK_SUPPORT"
+    }
+  }
+}

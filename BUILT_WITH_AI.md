@@ -19,11 +19,29 @@ Nothing serious, but these things happened:
 - Ruff flagged a few long lines. They were fixed.
 - The summary total in the report adds savings per vendor. I noticed that savings in the same category can overlap, so I added a line saying the total is a rough upper sketch.
 
+## Second round: decisions, dashboard, monthly digest
+
+I asked for a shorter report with a recommendation on top, a way to visualise it, and a monthly email and Slack message to whoever owns the spend. The assistant asked four questions first. I said I would not run the schedule, only show how I would, so the schedule is a documentation page and an example workflow kept outside `.github/`.
+
+What went wrong in this round:
+
+- A command the assistant wrote included an `rm -rf` on a path that did not exist, with no reason to be there. A built-in safety check blocked the whole command and nothing ran. It was the assistant's mistake. The command was rerun without the removal.
+- The first version of the decision list included a "cut 1 unused seat" item worth about $600. The assistant saw it in the printed output and added a minimum saving before something counts as a decision.
+- A regex edit meant to apply that minimum did not match, and the output showed the old behaviour. It was redone as a direct edit.
+- `report --full` crashed with a type error, because a leftover `return` came along when the report code was split in two.
+- One new test failed because its HTML parser took the dashboard's hover tooltips for the page title. The test was wrong, not the dashboard.
+- A `.gitignore` line would also have hidden `examples/dashboard.html`. It was caught before the commit.
+- Two digest lines read badly ("is act now now"). They were rewritten.
+
+How the dashboard was checked: it was opened in the app's browser pane on desktop and at phone width, in light mode. That pane would not switch to dark mode, so dark mode has not been seen.
+
 ## What I have not checked
 
 - I only ran the tests on Python 3.14, which is what was on this machine. CI is set up for 3.11 and 3.13, but it has not run, because nothing has been pushed.
 - The live provider was tested only with fake HTTP clients. It has never touched the real network.
 - The model step was tested only with a fake client. It has never called the real API.
+- The email and Slack sending code was tested only with fake servers. No real message has ever been sent.
+- The "last month" snapshot in `examples/state/` was made by running the tool with an earlier date. It is not real history.
 - The invented vendor names were picked to sound made up. I did not search to confirm that none of them is a real product. Any match is a coincidence.
 
 ## Before you rely on it

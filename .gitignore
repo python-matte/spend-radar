@@ -6,3 +6,7 @@ __pycache__/
 .spend_radar_cache/
 build/
 dist/
+digest_out/
+config/notify.json
+.spend_radar_state/
+/dashboard.html

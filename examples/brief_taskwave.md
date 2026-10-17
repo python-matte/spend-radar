@@ -6,6 +6,15 @@ As of 2026-10-17. Drafted by: rule-based template.
 
 > Every claim in sections 2 to 6 names an evidence item and quotes it. A claim whose quote or numbers could not be matched is listed at the end under "Unverified, check before using".
 
+## Recommendation
+
+**Negotiate now. Negotiate or give notice by 2026-10-21 (4 days). Planhive is a cheaper option for these seats.**
+
+- **Decide by:** 2026-10-21. Also start talks now (the 2026-08-22 start date has passed).
+- **Estimated saving:** $6,150 to $12,300 a year. An estimate, not a quote.
+- **Lead with:** (1) Remove auto-renew. Renewal should need our written yes. (2) Cap any renewal uplift at 3% for the term. (3) Ask for service credits tied to uptime, and credits for the recent incident.
+- **Walk-away:** A walk-away is realistic only if we start now. Treat it as real once we hold a written quote and a migration plan from the alternative.
+
 ## 1. Where we stand
 
 - **Spend and share of total.** Taskwave costs $48,000 a year on a per_seat plan. That is 7.7% of our total software spend of $619,800.

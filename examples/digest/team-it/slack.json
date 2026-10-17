@@ -1,0 +1,57 @@
+{
+  "text": "[Spend radar] October 2026: 1 decision due now, $3,180 to $6,360 at stake (IT)",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 1 decision due now, $3,180 to $6,360 at stake (IT)"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nStart with Meetly. Negotiate or give notice by 2026-10-31 (14 days). 53 seats are unused."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Your spend*\nIT owns 4 contracts worth $121,200 a year."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\n\u2022 Meetly (IT), $3,180 to $6,360 a year: Negotiate or give notice by 2026-10-31 (14 days). 53 seats are unused."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\n\u2022 Cloudpebble (IT), $13,320 to $26,640 a year: Cut 148 unused seats at renewal. Only 46% of seats are in use. Decide by 2026-12-12.\n\u2022 Chatharbor (IT), $1,140 to $2,280 a year: Cap the uplift. The last one was 9.5%. Decide by 2026-12-06."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\n\u2022 Meetly: Now due. Last month it was upcoming. This month it is act now."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#it-ops"
+}

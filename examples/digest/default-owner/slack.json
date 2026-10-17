@@ -1,0 +1,64 @@
+{
+  "text": "[Spend radar] October 2026: 3 decisions due now, $12,030 to $24,060 at stake",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": "[Spend radar] October 2026: 3 decisions due now, $12,030 to $24,060 at stake"
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Recommendation*\nStart with Taskwave. Negotiate or give notice by 2026-10-21 (4 days). Planhive is a cheaper option for these seats. Then Meetly, Boardwick."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Decide now*\n\u2022 Taskwave (Engineering), $6,150 to $12,300 a year: Negotiate or give notice by 2026-10-21 (4 days). Planhive is a cheaper option for these seats.\n\u2022 Meetly (IT), $3,180 to $6,360 a year: Negotiate or give notice by 2026-10-31 (14 days). 53 seats are unused.\n\u2022 Boardwick (Operations), $2,700 to $5,400 a year: Ask in writing to be released from the rollover on 2026-11-12. The notice deadline passed 19 days ago."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Coming up (next 90 days)*\n\u2022 Cloudpebble (IT), $13,320 to $26,640 a year: Cut 148 unused seats at renewal. Only 46% of seats are in use. Decide by 2026-12-12.\n\u2022 Hirestack (People), $4,200 to $8,400 a year: Cut 16 unused seats at renewal. Only 52% of seats are in use. Decide by 2027-01-08.\n\u2022 Designmint (Marketing), $3,795 to $7,590 a year: Cut 23 unused seats at renewal. Only 55% of seats are in use. Decide by 2027-01-06.\n\u2022 Chatharbor (IT), $1,140 to $2,280 a year: Cap the uplift. The last one was 9.5%. Decide by 2026-12-06.\n\u2022 Signalforge (Support), $600 to $1,200 a year: Ask to remove auto-renew. Decide by 2026-12-07."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*What changed since 2026-09-17*\n\u2022 Boardwick: The notice window closed. The contract will roll over on 2026-11-12 unless the vendor agrees otherwise.\n\u2022 Meetly: Now due. Last month it was upcoming. This month it is act now.\n\u2022 Taskwave: Now due. Last month it was upcoming. This month it is act now.\n\u2022 Designmint: Moved from fine to upcoming.\n\u2022 Hirestack: Moved from fine to upcoming."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Auto-renew watch*\n19 of 20 auto-renew contracts have no approved exception. The goal is none."
+      }
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "*Teams without a contact*\nNo team contact is configured for: Data, Facilities, Finance, Legal, Product, Sales. Their decisions are in this message only."
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "SAMPLE DATA, all invented. Estimates, not quotes. Not legal or financial advice. Check every figure against the contract before acting."
+        }
+      ]
+    }
+  ],
+  "channel": "#software-spend"
+}

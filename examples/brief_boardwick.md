@@ -6,6 +6,15 @@ As of 2026-10-17. Drafted by: rule-based template.
 
 > Every claim in sections 2 to 6 names an evidence item and quotes it. A claim whose quote or numbers could not be matched is listed at the end under "Unverified, check before using".
 
+## Recommendation
+
+**Escalate the rollover. Ask in writing to be released from the rollover on 2026-11-12. The notice deadline passed 19 days ago.**
+
+- **Decide by:** 2026-11-12. Also start talks now (the 2026-07-15 start date has passed).
+- **Estimated saving:** $2,700 to $5,400 a year. An estimate, not a quote.
+- **Lead with:** (1) Ask in writing to be released from the rollover, or for a mid-term concession. The deadline has passed, so frame it as a request and offer something in return. (2) Remove auto-renew. Renewal should need our written yes. (3) Cap any renewal uplift at 3% for the term.
+- **Walk-away:** A walk-away is not realistic this cycle. The notice deadline has passed, so the contract rolls over. Ask for a mid-term concession and diary the next deadline.
+
 ## 1. Where we stand
 
 - **Spend and share of total.** Boardwick costs $26,400 a year on a per_seat plan. That is 4.3% of our total software spend of $619,800.

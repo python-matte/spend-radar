@@ -10,13 +10,20 @@ from collections import defaultdict
 from datetime import date, timedelta
 
 from .schemas import (
+    Action,
     Analysis,
+    Change,
+    Decision,
     OverlapGroup,
     OverlapMember,
+    Overview,
     PriorityItem,
     RenewalInfo,
     RenewalStatus,
+    Snapshot,
+    SnapshotEntry,
     UnusedSeatSaving,
+    Urgency,
     Vendor,
 )
 
@@ -311,15 +318,17 @@ def analyze(vendors: list[Vendor], as_of: date) -> Analysis:
     unused = [unused_seat_saving(v) for v in vendors]
     overlaps = find_overlaps(vendors)
     low, high = vendor_savings(vendors, unused, overlaps)
+    renewals = [renewal_info(v, as_of) for v in vendors]
     return Analysis(
         as_of=as_of,
         total_spend=total_spend(vendors),
-        renewals=[renewal_info(v, as_of) for v in vendors],
+        renewals=renewals,
         unused=unused,
         overlaps=overlaps,
         priorities=priority_ranking(vendors, as_of, unused, overlaps),
         vendor_saving_low=low,
         vendor_saving_high=high,
+        decisions=decide(vendors, renewals, unused, overlaps, low, high),
     )
 
 
@@ -386,3 +395,279 @@ def negotiation_timeline(vendor: Vendor, as_of: date) -> list[tuple[date, str]]:
         steps.append((deadline, "Date to confirm in writing whether we renew."))
         steps.append((renewal, "Renewal date. The contract ends if nothing was signed."))
     return sorted(steps, key=lambda s: s[0])
+
+
+# 5. Decisions ------------------------------------------------------------------------------
+
+RIGHT_SIZE_BELOW_PCT = 85  # below this usage, trimming seats is worth a decision
+MIN_DECISION_SAVING = 1500  # a seat or overlap decision needs a high case at least this big
+
+
+def decide(
+    vendors: list[Vendor],
+    renewals: list[RenewalInfo],
+    unused: list[UnusedSeatSaving],
+    overlaps: list[OverlapGroup],
+    low: dict[str, float],
+    high: dict[str, float],
+) -> list[Decision]:
+    """One recommended decision per vendor. Most urgent first, then biggest saving."""
+    info_by = {r.vendor: r for r in renewals}
+    unused_by = {u.vendor: u for u in unused}
+    overlap_by: dict[str, tuple[OverlapGroup, OverlapMember]] = {}
+    for group in overlaps:
+        for m in group.members:
+            overlap_by[m.vendor] = (group, m)
+
+    decisions: list[Decision] = []
+    for v in vendors:
+        info = info_by[v.vendor]
+        seats = unused_by[v.vendor]
+        pair = overlap_by.get(v.vendor)
+        can_consolidate = bool(pair and pair[1].saving_if_moved >= MIN_DECISION_SAVING)
+        can_trim = (
+            seats.applicable
+            and seats.high >= MIN_DECISION_SAVING
+            and seats.usage_pct < RIGHT_SIZE_BELOW_PCT
+        )
+        no_exception = v.auto_renew and not v.auto_renew_approved_by
+        due = info.notice_deadline if v.auto_renew else info.renewal_date
+        due_days = info.days_to_deadline if v.auto_renew else info.days_to_renewal
+
+        if can_consolidate:
+            assert pair is not None
+            driver = f"{pair[0].target_vendor} is a cheaper option for these seats."
+        elif can_trim:
+            driver = f"{seats.excess_seats} seats are unused."
+        elif no_exception:
+            driver = "Remove auto-renew."
+        else:
+            driver = ""
+
+        if info.status is RenewalStatus.WINDOW_CLOSED:
+            action = Action.ESCALATE_ROLLOVER
+            due = info.renewal_date
+            headline = (
+                "Ask in writing to be released from the rollover on "
+                f"{info.renewal_date.isoformat()}. "
+                f"The notice deadline passed {-info.days_to_deadline} days ago."
+            )
+        elif info.status is RenewalStatus.ACT_NOW:
+            action = Action.NEGOTIATE_NOW
+            if v.auto_renew:
+                headline = (
+                    f"Negotiate or give notice by {due.isoformat()} ({due_days} days). {driver}"
+                )
+            else:
+                headline = (
+                    f"Renews in {due_days} days. Decide whether to renew, and on what "
+                    f"terms. {driver}"
+                )
+        elif can_consolidate:
+            assert pair is not None
+            action = Action.CONSOLIDATE
+            headline = (
+                f"Plan a move of {pair[1].seats_active} seats to {pair[0].target_vendor}, or use "
+                f"that option to cut the price. Decide by {due.isoformat()}."
+            )
+        elif can_trim:
+            action = Action.RIGHT_SIZE
+            headline = (
+                f"Cut {seats.excess_seats} unused seats at renewal. Only {seats.usage_pct:.0f}% "
+                f"of seats are in use. Decide by {due.isoformat()}."
+            )
+        elif v.last_uplift_pct >= HIGH_UPLIFT_PCT:
+            action = Action.CAP_UPLIFT
+            headline = (
+                f"Cap the uplift. The last one was {v.last_uplift_pct:g}%. "
+                f"Decide by {due.isoformat()}."
+            )
+        elif no_exception:
+            action = Action.REMOVE_AUTO_RENEW
+            headline = f"Ask to remove auto-renew. Decide by {due.isoformat()}."
+        else:
+            action = Action.WATCH
+            headline = "No action needed this month."
+
+        if info.status in (RenewalStatus.WINDOW_CLOSED, RenewalStatus.ACT_NOW):
+            urgency = Urgency.NOW
+        elif info.status is RenewalStatus.UPCOMING:
+            urgency = Urgency.SOON
+        else:
+            urgency = Urgency.LATER
+        if action is Action.WATCH:
+            urgency = Urgency.LATER
+
+        decisions.append(
+            Decision(
+                vendor=v.vendor,
+                owner_team=v.owner_team,
+                action=action,
+                urgency=urgency,
+                status=info.status,
+                headline=headline.strip(),
+                decide_by=due,
+                start_by=info.start_negotiating_by,
+                annual_cost=v.annual_cost,
+                saving_low=low[v.vendor] if action is not Action.WATCH else 0.0,
+                saving_high=high[v.vendor] if action is not Action.WATCH else 0.0,
+                auto_renew_no_exception=bool(no_exception),
+            )
+        )
+
+    rank = {Urgency.NOW: 0, Urgency.SOON: 1, Urgency.LATER: 2}
+
+    def sort_key(d: Decision) -> tuple:
+        mid = (d.saving_low + d.saving_high) / 2
+        watch = d.action is Action.WATCH
+        if d.urgency is Urgency.NOW:
+            return (rank[d.urgency], watch, d.decide_by, d.vendor)
+        return (rank[d.urgency], watch, -mid, d.vendor)
+
+    return sorted(decisions, key=sort_key)
+
+
+def decision_for(analysis: Analysis, vendor_name: str) -> Decision:
+    return next(d for d in analysis.decisions if d.vendor == vendor_name)
+
+
+def actionable(decisions: list[Decision]) -> list[Decision]:
+    return [d for d in decisions if d.action is not Action.WATCH]
+
+
+def build_overview(vendors: list[Vendor], analysis: Analysis) -> Overview:
+    todo = actionable(analysis.decisions)
+    now = [d for d in todo if d.urgency is Urgency.NOW]
+    soon = [d for d in todo if d.urgency is Urgency.SOON]
+    later = [d for d in todo if d.urgency is Urgency.LATER]
+    if now:
+        names = [d.vendor for d in now]
+        first = now[0]
+        rest = f" Then {', '.join(names[1:])}." if len(names) > 1 else ""
+        recommendation = (
+            f"Start with {first.vendor}. {first.headline}{rest}"
+            if len(names) > 1
+            else f"Start with {first.vendor}. {first.headline}"
+        )
+    elif soon:
+        recommendation = f"Nothing is urgent. Prepare {soon[0].vendor} next. {soon[0].headline}"
+    else:
+        recommendation = "Nothing needs a decision this month."
+    return Overview(
+        total_spend=analysis.total_spend,
+        saving_low=sum(analysis.vendor_saving_low.values()),
+        saving_high=sum(analysis.vendor_saving_high.values()),
+        now_count=len(now),
+        now_saving_low=sum(d.saving_low for d in now),
+        now_saving_high=sum(d.saving_high for d in now),
+        soon_count=len(soon),
+        later_count=len(later),
+        auto_renew_no_exception=sum(
+            1 for v in vendors if v.auto_renew and not v.auto_renew_approved_by
+        ),
+        auto_renew_total=sum(1 for v in vendors if v.auto_renew),
+        recommendation=recommendation,
+    )
+
+
+# 6. Month on month -----------------------------------------------------------------------
+
+
+def make_snapshot(vendors: list[Vendor], analysis: Analysis) -> Snapshot:
+    info = {r.vendor: r for r in analysis.renewals}
+    dec = {d.vendor: d for d in analysis.decisions}
+    entries = {}
+    for v in vendors:
+        entries[v.vendor] = SnapshotEntry(
+            status=info[v.vendor].status,
+            urgency=dec[v.vendor].urgency,
+            action=dec[v.vendor].action,
+            renewal_date=v.renewal_date,
+            auto_renew=v.auto_renew,
+            days_to_deadline=info[v.vendor].days_to_deadline,
+            saving_mid=(
+                analysis.vendor_saving_low[v.vendor] + analysis.vendor_saving_high[v.vendor]
+            )
+            / 2,
+        )
+    return Snapshot(as_of=analysis.as_of, total_spend=analysis.total_spend, vendors=entries)
+
+
+_CHANGE_ORDER = {
+    "window_closed": 0,
+    "new_now": 1,
+    "still_open": 2,
+    "renewed": 3,
+    "closer": 4,
+    "cleared": 5,
+    "new_vendor": 6,
+    "removed": 7,
+}
+
+
+def diff_snapshots(prev: Snapshot | None, cur: Snapshot) -> list[Change]:
+    """What changed since the last run. Empty on the first run."""
+    if prev is None:
+        return []
+    out: list[Change] = []
+    for name, now in cur.vendors.items():
+        before = prev.vendors.get(name)
+        if before is None:
+            out.append(Change(vendor=name, kind="new_vendor", text="New in the vendor list."))
+            continue
+        if now.renewal_date > before.renewal_date:
+            text = f"Renewed. The renewal date moved to {now.renewal_date.isoformat()}."
+            if before.auto_renew and not now.auto_renew:
+                text += " Auto-renew was removed."
+            out.append(Change(vendor=name, kind="renewed", text=text))
+        elif (
+            now.status is RenewalStatus.WINDOW_CLOSED
+            and before.status is not RenewalStatus.WINDOW_CLOSED
+        ):
+            out.append(
+                Change(
+                    vendor=name,
+                    kind="window_closed",
+                    text=(
+                        "The notice window closed. The contract will roll over on "
+                        f"{now.renewal_date.isoformat()} unless the vendor agrees otherwise."
+                    ),
+                )
+            )
+        elif now.urgency is Urgency.NOW and before.urgency is not Urgency.NOW:
+            out.append(
+                Change(
+                    vendor=name,
+                    kind="new_now",
+                    text=(
+                        f"Now due. Last month it was {before.status.value}. "
+                        f"This month it is {now.status.value}."
+                    ),
+                )
+            )
+        elif (
+            now.urgency is Urgency.NOW
+            and before.urgency is Urgency.NOW
+            and now.action is not Action.WATCH
+        ):
+            out.append(
+                Change(
+                    vendor=name,
+                    kind="still_open",
+                    text="Still open from last month. The deadline is closer.",
+                )
+            )
+        elif now.status is not before.status:
+            out.append(
+                Change(
+                    vendor=name,
+                    kind="closer",
+                    text=f"Moved from {before.status.value} to {now.status.value}.",
+                )
+            )
+        elif now.action is Action.WATCH and before.action is not Action.WATCH:
+            out.append(Change(vendor=name, kind="cleared", text="No longer needs action."))
+    for name in prev.vendors:
+        if name not in cur.vendors:
+            out.append(Change(vendor=name, kind="removed", text="No longer in the vendor list."))
+    return sorted(out, key=lambda ch: (_CHANGE_ORDER[ch.kind], ch.vendor))
